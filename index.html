@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1" />
+		<title>Web NFC Reader & Writer</title>
+		<link
+			rel="stylesheet"
+			href="style.css" />
+	</head>
+	<body>
+		<header>
+			<div class="header-content">
+				<h1>Web NFC Reader & Writer 🔨🤖🔧</h1>
+				<div class="sub">
+					Scan NDEF tags, view records, and write new payloads (Chrome/Edge on
+					Android, HTTPS)
+				</div>
+			</div>
+			<button
+				id="theme-toggle"
+				title="Toggle theme">
+				☀️
+			</button>
+		</header>
+
+		<main>
+			<div class="grid">
+				<section class="card">
+					<h2 style="margin-top: 6px">Reader</h2>
+					<div
+						class="row"
+						style="margin: 8px 0 10px">
+						<button
+							id="btnStart"
+							class="btn-accent">
+							Start Scan
+						</button>
+						<button
+							id="btnStop"
+							class="btn-warn"
+							disabled>
+							Stop Scan
+						</button>
+						<span
+							id="support"
+							class="pill"
+							>Checking support…</span
+						>
+					</div>
+					<div class="scanner-animation hidden">
+						<div class="scanner-bar"></div>
+					</div>
+					<div
+						class="kv"
+						style="margin-bottom: 12px">
+						<div class="muted">Status</div>
+						<div id="status">Idle</div>
+						<div class="muted">Last Serial</div>
+						<div id="serial">—</div>
+						<div class="muted">Last Tech</div>
+						<div id="tech">—</div>
+					</div>
+					<div
+						class="log"
+						id="log"></div>
+				</section>
+
+				<section class="card">
+					<h2 style="margin-top: 6px">Writer</h2>
+					<div
+						class="row"
+						style="margin: 8px 0 10px">
+						<select id="recordType">
+							<option value="text">text</option>
+							<option value="url">url</option>
+							<option value="mime">mime</option>
+							<option value="absolute-url">absolute-url</option>
+							<option value="unknown">unknown</option>
+						</select>
+						<input
+							id="mimeType"
+							class="hidden"
+							placeholder="MIME type, e.g. text/plain" />
+					</div>
+					<textarea
+						id="payload"
+						placeholder="Enter payload… (for mime, base64 or raw text is fine)"
+						rows="6"
+						style="width: 100%; resize: vertical"></textarea>
+					<div
+						class="row"
+						style="margin-top: 10px">
+						<button
+							id="btnWrite"
+							class="btn-ok">
+							Write to Tag
+						</button>
+						<button id="btnWriteMulti">Write Multi-Record (demo)</button>
+					</div>
+					<div class="footer">
+						Bring an NFC tag near the phone when writing. You may be prompted to
+						hold it to the back of your device. ❗
+					</div>
+				</section>
+			</div>
+
+			<section
+				class="card"
+				style="margin-top: 16px">
+				<h2>Created By Rihad Jahan Opu</h2>
+			</section>
+		</main>
+
+		<script
+			type="module"
+			src="script.js"></script>
+	</body>
+</html>

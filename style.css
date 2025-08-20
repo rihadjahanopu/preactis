@@ -1,0 +1,246 @@
+:root {
+	--bg: #f8fafc;
+	--panel: #ffffff;
+	--text: #0f172a;
+	--muted: #64748b;
+	--accent: #0ea5e9;
+	--ok: #22c55e;
+	--warn: #f59e0b;
+	--err: #ef4444;
+	--code-bg: #f1f5f9;
+	--code-text: #020617;
+	--border-color: rgba(0, 0, 0, 0.1);
+	--shadow-color: rgba(14, 165, 233, 0.15);
+	--gradient-start: #f0f9ff;
+	--gradient-mid: #e0f2fe;
+	--gradient-end: #f0f9ff;
+}
+
+[data-theme="dark"] {
+	color-scheme: dark;
+	--bg: #0f172a;
+	--panel: #111827;
+	--text: #e5e7eb;
+	--muted: #9ca3af;
+	--accent: #22d3ee;
+	--ok: #22c55e;
+	--warn: #f59e0b;
+	--err: #ef4444;
+	--code-bg: #0b1020;
+	--code-text: #cde0ff;
+	--border-color: rgba(255, 255, 255, 0.08);
+	--shadow-color: rgba(34, 211, 238, 0.15);
+	--gradient-start: #0b1020;
+	--gradient-mid: #0a0f1a;
+	--gradient-end: #06080f;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+		"Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+	background: linear-gradient(
+		180deg,
+		var(--gradient-start),
+		var(--gradient-mid) 40%,
+		var(--gradient-end)
+	);
+	color: var(--text);
+	transition: background 0.3s ease, color 0.3s ease;
+}
+
+header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	padding: 28px 20px 10px;
+	text-align: center;
+}
+
+h1 {
+	margin: 0;
+	font-size: 1.6rem;
+	letter-spacing: 0.3px;
+}
+.sub {
+	color: var(--muted);
+	margin-top: 6px;
+	font-size: 0.95rem;
+}
+
+main {
+	max-width: 980px;
+	margin: 16px auto 48px;
+	padding: 0 16px;
+}
+
+.grid {
+	display: grid;
+	gap: 16px;
+	grid-template-columns: 1fr;
+}
+@media (min-width: 860px) {
+	.grid {
+		grid-template-columns: 1.2fr 1fr;
+	}
+}
+
+.card {
+	background: var(--panel);
+	border: 1px solid var(--border-color);
+	border-radius: 14px;
+	padding: 16px;
+	backdrop-filter: blur(6px);
+	transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.row {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+button,
+select,
+input,
+textarea {
+	background: var(--bg);
+	color: var(--text);
+	border: 1px solid var(--border-color);
+	border-radius: 10px;
+	padding: 10px 14px;
+	font-size: 14px;
+	outline: none;
+	transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+button {
+	cursor: pointer;
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0.05),
+		rgba(0, 0, 0, 0.05)
+	);
+	border: 1px solid var(--border-color);
+	transition: transform 0.06s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+button:hover {
+	border-color: var(--accent);
+	box-shadow: 0 0 0 3px var(--shadow-color) inset;
+}
+button:active {
+	transform: translateY(1px);
+}
+button:disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+#theme-toggle {
+	font-size: 1.5rem;
+	padding: 4px 8px;
+	background: transparent;
+}
+
+.btn-accent {
+	border-color: var(--accent);
+}
+.btn-warn {
+	border-color: var(--warn);
+}
+.btn-ok {
+	border-color: var(--ok);
+}
+.btn-err {
+	border-color: var(--err);
+}
+
+code,
+pre {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		"Liberation Mono", "Courier New", monospace;
+	background: var(--code-bg);
+	color: var(--code-text);
+	border-radius: 10px;
+	transition: background 0.3s ease, color 0.3s ease;
+}
+
+pre {
+	margin: 0;
+	padding: 10px 12px;
+	overflow: auto;
+	border: 1px solid var(--border-color);
+}
+
+.log {
+	display: grid;
+	gap: 10px;
+	max-height: 400px;
+	overflow: auto;
+	padding-right: 4px;
+}
+
+.pill {
+	font-size: 12px;
+	padding: 3px 8px;
+	border-radius: 9999px;
+	background: var(--bg);
+	color: var(--muted);
+	border: 1px solid var(--border-color);
+}
+
+.kv {
+	display: grid;
+	grid-template-columns: 120px 1fr;
+	gap: 4px 12px;
+	align-items: start;
+}
+.muted {
+	color: var(--muted);
+}
+.footer {
+	margin-top: 10px;
+	color: var(--muted);
+	font-size: 12px;
+}
+.hidden {
+	display: none !important;
+}
+
+/* Scanner Animation */
+.scanner-animation {
+	position: relative;
+	height: 60px;
+	background: var(--code-bg);
+	border-radius: 8px;
+	overflow: hidden;
+	margin: 10px 0;
+	border: 1px solid var(--border-color);
+}
+.scanner-bar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 3px;
+	background: var(--accent);
+	box-shadow: 0 0 10px var(--accent);
+	animation: scan 2s infinite ease-in-out;
+}
+@keyframes scan {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(57px);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
