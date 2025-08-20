@@ -45,17 +45,14 @@ async function handleStartScan() {
 	updateScanUI(true);
 	try {
 		state.controller = new AbortController();
-		await startScan(state.controller.signal, (message, serialNumber, tech) => {
-			ui.serial.textContent = serialNumber || "—";
-			ui.tech.textContent = tech || "NDEF";
+		await startScan(state.controller.signal, (data) => {
+			ui.serial.textContent = data.serialNumber || "—";
+			ui.tech.textContent = data.tech || "NDEF";
 			setStatus("Tag read ✔️", "ok");
-
-			// message.records are already decoded by startScan
-			const decoded = {
-				serialNumber: serialNumber || null,
-				records: message.records,
-			};
-			appendLog(decoded, "Tag Read");
+			appendLog(
+				{ serialNumber: data.serialNumber, records: data.records },
+				"Tag Read"
+			);
 		});
 		setStatus("Scanning… bring a tag close 💡");
 	} catch (err) {
@@ -217,11 +214,12 @@ export async function startScan(signal, onReading) {
 	ndef.onreading = (event) => {
 		const { message, serialNumber } = event;
 		const decodedRecords = message.records.map(decodeRecord);
-		onReading(
-			{ ...message, records: decodedRecords },
-			serialNumber,
-			event.target?.tech
-		);
+		onReading({
+			...message,
+			records: decodedRecords,
+			serialNumber: serialNumber || null,
+			tech: event.target?.tech || null,
+		});
 	};
 }
 
